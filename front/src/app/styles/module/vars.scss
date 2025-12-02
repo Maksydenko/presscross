@@ -1,0 +1,58 @@
+// Vars
+
+// Connection utils
+@use './utils';
+
+// // Connection mixins
+@use './mixins';
+
+// ============================================================================
+
+// Settings template
+
+// Sizes
+$fontSize: utils.rem(16);
+
+// Fonts
+$primaryFontFamily: 'Open Sans', sans-serif;
+$pixelFontFamily: 'Press Start 2P', cursive;
+
+// Colors
+$lightColor: #fff;
+$darkColor: #000;
+$mainColor: #fbfbfb;
+$mainBgGradient: radial-gradient(
+  101.88% 105.2% at 0% 100%,
+  #3b3f45 0%,
+  #2c292e 47.36%,
+  #15171f 100%
+);
+
+// ============================================================================
+
+// Adaptive grid settings
+
+// The minimum page width
+$minWidth: 320;
+// The width of the canvas
+$maxWidth: 1920;
+// The width of the limiting container
+$maxWidthContainer: 1600;
+// General indenter
+$containerPadding: 32;
+$containerDesktopPadding: 240;
+
+// The width of the first breakpoint
+$containerWidth: $maxWidthContainer + $containerPadding;
+$containerDesktopWidth: $maxWidthContainer + $containerDesktopPadding;
+
+// Breakpoints
+$desktop: 1199.98px;
+$tablet: 991.98px;
+$mobile: 767.98px;
+$mobileSmall: 479.98px;
+
+// Adaptive type:
+// 1 = responsiveness
+// !1 = according to breakpoints
+$adaptiveType: 1;

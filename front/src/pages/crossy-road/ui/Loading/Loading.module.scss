@@ -1,0 +1,7 @@
+@use '@/app/styles/module' as m;
+
+.loading {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}

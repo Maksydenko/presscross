@@ -1,0 +1,10 @@
+@use '@/app/styles/module' as m;
+
+.score {
+  position: fixed;
+  inset-block-start: 24px;
+  inset-inline-start: 24px;
+  z-index: 9;
+  font-size: 48px;
+  color: m.$lightColor;
+}

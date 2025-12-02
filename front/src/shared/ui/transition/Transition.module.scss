@@ -1,0 +1,9 @@
+@use '@/app/styles/module' as m;
+
+.transition {
+  transition: opacity 0.3s ease 0s;
+
+  &[data-closed] {
+    opacity: 0;
+  }
+}

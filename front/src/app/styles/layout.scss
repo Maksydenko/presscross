@@ -1,0 +1,30 @@
+// Layout
+
+// ============================================================================
+
+@use '@/app/styles/module' as m;
+
+// Body tag styles
+body {
+  // Lock scroll
+  .lock {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+}
+
+// Shell layout
+#app {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100%;
+  overflow: clip;
+
+  // Press the footer
+  main {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+}

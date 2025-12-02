@@ -1,0 +1,24 @@
+@use '@/app/styles/module' as m;
+
+.home {
+  width: 100vw;
+  height: 100vh;
+
+  // .home__body
+
+  &__body {
+    padding: 160px 0;
+  }
+
+  // .home__games
+
+  &__games {
+  }
+
+  // .home__game
+
+  &__game {
+    position: fixed;
+    inset: 0;
+  }
+}

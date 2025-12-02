@@ -1,0 +1,61 @@
+@use '@/app/styles/module' as m;
+
+.gameOver {
+  // .popup__body
+
+  &__body {
+    position: fixed;
+    inset: 0;
+    z-index: 8;
+    overflow: auto;
+  }
+
+  // .popup__content
+
+  &__content {
+    min-block-size: 100%;
+
+    @include m.centered(flex);
+  }
+
+  // .popup__box
+
+  &__box {
+    position: relative;
+    inline-size: 100%;
+    padding: m.rem(24) m.rem(16);
+    font-size: m.rem(32);
+    color: m.$lightColor;
+    text-align: center;
+    text-transform: capitalize;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: '';
+      background: #f86332;
+      opacity: 0.8;
+    }
+  }
+
+  &[data-panel] {
+    width: 100%;
+    height: 100%;
+  }
+
+  // .gameOver__btn
+
+  &__btn {
+    position: fixed;
+    inset-block-end: m.rem(24);
+    inset-inline-start: 50%;
+    padding: m.rem(24);
+    font-size: m.rem(24);
+    text-transform: capitalize;
+    background: #57c7fa;
+    translate: -50% 0;
+
+    @include m.textNowrap;
+  }
+}

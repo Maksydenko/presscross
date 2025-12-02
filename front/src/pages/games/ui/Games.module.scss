@@ -1,0 +1,93 @@
+@use '@/app/styles/module' as m;
+
+:root {
+  --cardSize: 140px;
+  --cardSizeActive: calc(var(--cardSize) * 1.6);
+  --cardGap: 12px;
+}
+
+$cardColor: rgba(0, 0, 0, 0.3);
+$transition: 0.3s ease 0s;
+
+.games {
+  // .games__list
+
+  &__list {
+    display: flex;
+    gap: var(--cardGap);
+    padding: 0 var(--cardGap);
+    transition: translate $transition;
+  }
+
+  // .games__logo
+
+  &__logo {
+    overflow: hidden;
+    background: $cardColor;
+    border-radius: 30px;
+  }
+
+  // .games__title
+
+  &__title {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    font-size: 40px;
+    font-weight: 300;
+    translate: 20px -52px;
+
+    @include m.textNowrap;
+  }
+
+  // .games__item
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: var(--cardSize);
+    height: var(--cardSize);
+    transition: $transition;
+    transition-property: inline-size, block-size, box-shadow, margin;
+
+    img {
+      width: 100%;
+      height: 100%;
+      user-select: none;
+      object-fit: cover;
+    }
+
+    // .games__logo_mini
+
+    &_mini {
+      .games__logo {
+        padding: 22%;
+      }
+    }
+
+    // .games__item_active
+
+    &_active {
+      width: var(--cardSizeActive);
+      height: var(--cardSizeActive);
+      margin: 0 12px;
+
+      .games__logo {
+        box-shadow:
+          0 0 0 3px #171717,
+          0 0 0 6px $cardColor,
+          0 0 0 6px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    &:not(&_active) {
+      .games__title {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+}

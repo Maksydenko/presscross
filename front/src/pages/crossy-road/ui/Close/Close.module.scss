@@ -1,0 +1,13 @@
+@use '@/app/styles/module' as m;
+
+.close {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9;
+  width: 48px;
+  aspect-ratio: 1;
+  font-size: 32px;
+  color: #c33333;
+  text-transform: uppercase;
+}
