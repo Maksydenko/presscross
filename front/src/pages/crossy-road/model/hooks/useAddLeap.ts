@@ -1,12 +1,6 @@
 import { useAtomValue } from 'jotai';
 
-import {
-  Direction,
-  GamepadBtn,
-  useGamepad,
-  useSwipe,
-  useWindowListener
-} from '@/shared/model';
+import { Direction, useSwipe, useWindowListener } from '@/shared/model';
 
 import { Tile } from '../../config';
 
