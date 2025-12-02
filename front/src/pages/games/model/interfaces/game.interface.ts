@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Game } from '@/shared/model';
+import { Game } from '@/shared/config';
 
 export interface IGame {
   component: () => Promise<{ default: FC }>;
