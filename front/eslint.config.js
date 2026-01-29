@@ -35,6 +35,7 @@ const eslintConfig = [
       'simple-import-sort': simpleImportSortPlugin
     },
     rules: {
+      '@typescript-eslint/no-inferrable-types': 'error',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         {
