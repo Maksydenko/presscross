@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { getPropertyValue, Time } from '@/shared/model';
 import { Transition } from '@/shared/ui';
 
-import { gameStateAtom, isLoadingAtom } from '../../model';
+import { gameStateAtom } from '../../model';
 
 import { Loader } from '../Loader/Loader';
 

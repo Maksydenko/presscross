@@ -22,7 +22,11 @@ export const Map: FC = () => {
       })
         .slice(0, Math.max(0, VISIBLE_BACK - currentX))
         .map((_, i) => (
-          <Row key={i} rowIndex={0 - ++i} />
+          <Row
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
+            rowIndex={0 - ++i}
+          />
         ))}
 
       {rows.slice(start, end).map((row, i) => (

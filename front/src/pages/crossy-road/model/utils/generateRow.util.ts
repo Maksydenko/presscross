@@ -2,9 +2,9 @@ import * as THREE from 'three';
 
 import { Tile, TileType } from '../../config';
 
+import { chooseRandomElement } from './chooseRandomElement.util';
 import { generateForest } from './generateForest.util';
 import { generateRoad } from './generateRoad.util';
-import { chooseRandomElement } from './chooseRandomElement.util';
 
 import { IRowData } from '../interfaces';
 

@@ -23,7 +23,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
   const [activeIndex, setActiveIndex] = useState(serviceData.length);
   const containerRef = useRef<HTMLUListElement | null>(null);
 
-  const [game, setGame] = useAtom(gameAtom);
+  const [gameId, setGameId] = useAtom(gameAtom);
 
   const cardSize = getPropertyValue('--cardSize');
   const cardGap = getPropertyValue('--cardGap');
@@ -61,12 +61,12 @@ export const Games: FC<GamesProps> = ({ className }) => {
     }
 
     if (gameData.includes(currentItem as IGame)) {
-      setGame((currentItem as IGame).id);
+      setGameId((currentItem as IGame).id);
     }
   };
 
   const handleKeyDown = ({ code }: KeyboardEvent) => {
-    if (game) {
+    if (gameId) {
       return;
     }
 
@@ -89,7 +89,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
   });
 
   useWheel((deltaY: number) => {
-    if (game) {
+    if (gameId) {
       return;
     }
 
@@ -104,7 +104,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
 
   useSwipe(
     (dir: Direction) => {
-      if (game) {
+      if (gameId) {
         return;
       }
 
@@ -116,7 +116,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
       }
     },
     () => {
-      if (game) {
+      if (gameId) {
         return;
       }
 
@@ -127,13 +127,13 @@ export const Games: FC<GamesProps> = ({ className }) => {
   return (
     <div className={clsx(s.games, className)}>
       <ul ref={containerRef} className={s.games__list}>
-        {serviceData.map((service, index) => (
+        {serviceData.map((service, i) => (
           <li
             key={service.title}
             className={clsx(
               s.games__item,
               s.games__item_mini,
-              index === activeIndex && s.games__item_active
+              i === activeIndex && s.games__item_active
             )}
           >
             <div className={s.games__logo}>
@@ -142,12 +142,12 @@ export const Games: FC<GamesProps> = ({ className }) => {
             <h2 className={s.games__title}>{service.title}</h2>
           </li>
         ))}
-        {gameData.map((game, index) => (
+        {gameData.map((game, i) => (
           <li
             key={game.id}
             className={clsx(
               s.games__item,
-              index + serviceData.length === activeIndex && s.games__item_active
+              i + serviceData.length === activeIndex && s.games__item_active
             )}
           >
             <div className={s.games__logo}>

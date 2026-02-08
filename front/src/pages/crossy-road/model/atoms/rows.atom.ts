@@ -12,11 +12,19 @@ export const rowsAtom = atom<IRowData[]>([
   ...generateRows(INITIAL_FULL_ROW_NUMBER)
 ]);
 
-export const addRowsAtom = atom(null, (get, set, newRows: number = 1) => {
-  const prev = get(rowsAtom);
+export const addRowsAtom = atom(
+  null,
+  (
+    get,
+    set,
+    // eslint-disable-next-line @typescript-eslint/no-inferrable-types
+    newRows: number = 1
+  ) => {
+    const prev = get(rowsAtom);
 
-  set(rowsAtom, [...prev, ...generateRows(newRows)]);
-});
+    set(rowsAtom, [...prev, ...generateRows(newRows)]);
+  }
+);
 
 export const resetRowsAtom = atom(null, (_, set) => {
   set(rowsAtom, [

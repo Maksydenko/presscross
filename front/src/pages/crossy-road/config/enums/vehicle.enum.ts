@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-duplicate-enum-values */
 
 export enum VehicleSpeed {
-  Max = 120,
-  Min = 80
+  Min = 80,
+  Max = 120
 }
 
 export enum WheelSize {

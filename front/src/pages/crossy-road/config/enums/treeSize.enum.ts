@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-duplicate-enum-values */
 
 export enum TreeHeight {
-  Max = 60,
-  Min = 20
+  Min = 20,
+  Max = 60
 }
 
 export enum TreeSize {
