@@ -46,6 +46,7 @@ const eslintConfig = [
       curly: ['error', 'all'],
       'func-style': ['error', 'expression'],
       'no-empty-pattern': 'error',
+      'no-shadow': 'error',
       'no-useless-rename': 'error',
       'object-shorthand': ['error', 'always'],
       'perfectionist/sort-imports': 'off',
