@@ -33,16 +33,6 @@ export const Games: FC<GamesProps> = ({ className }) => {
       ? (cardSize + cardGap) * (activeIndex - 1) - cardSize / 2.6
       : 0;
 
-  useEffect(() => {
-    const containerElement = containerRef.current;
-
-    if (!containerElement) {
-      return;
-    }
-
-    containerElement.style.translate = `-${translateX}px 0`;
-  }, [translateX]);
-
   const nextGame = () => {
     setActiveIndex(prev =>
       Math.min(prev + 1, serviceData.length + gameData.length - 1)
@@ -62,6 +52,15 @@ export const Games: FC<GamesProps> = ({ className }) => {
 
     if (gameData.includes(currentItem as IGame)) {
       setGameId((currentItem as IGame).id);
+    }
+  };
+
+  const moves: Partial<Record<Direction, () => void>> = {
+    [Direction.Left]: () => {
+      prevGame();
+    },
+    [Direction.Right]: () => {
+      nextGame();
     }
   };
 
@@ -96,7 +95,6 @@ export const Games: FC<GamesProps> = ({ className }) => {
     if (deltaY > 0) {
       nextGame();
     }
-
     if (deltaY < 0) {
       prevGame();
     }
@@ -108,12 +106,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
         return;
       }
 
-      if (dir === Direction.Left) {
-        prevGame();
-      }
-      if (dir === Direction.Right) {
-        nextGame();
-      }
+      moves[dir]?.();
     },
     () => {
       if (gameId) {
@@ -123,6 +116,16 @@ export const Games: FC<GamesProps> = ({ className }) => {
       openGame();
     }
   );
+
+  useEffect(() => {
+    const containerElement = containerRef.current;
+
+    if (!containerElement) {
+      return;
+    }
+
+    containerElement.style.translate = `-${translateX}px 0`;
+  }, [translateX]);
 
   return (
     <div className={clsx(s.games, className)}>

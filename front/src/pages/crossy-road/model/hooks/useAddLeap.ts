@@ -16,23 +16,29 @@ export const useAddLeap = (playerState: IPlayerState) => {
   const getTarget = (state: IPlayerState) => {
     let { x, y } = state.position;
 
-    for (const dir of state.leapsQueue) {
-      if (dir === Direction.Left) {
+    const leaps = {
+      [Direction.Down]: () => {
+        y -= Tile.Size;
+      },
+      [Direction.Left]: () => {
         x -= Tile.Size;
-      }
-      if (dir === Direction.Right) {
+      },
+      [Direction.Right]: () => {
         x += Tile.Size;
-      }
-
-      if (dir === Direction.Up) {
+      },
+      [Direction.Up]: () => {
         y += Tile.Size;
       }
-      if (dir === Direction.Down) {
-        y -= Tile.Size;
-      }
+    };
+
+    for (const dir of state.leapsQueue) {
+      leaps[dir]?.();
     }
 
-    return { x, y };
+    return {
+      x,
+      y
+    };
   };
 
   const addLeap = (dir: Direction) => {
@@ -43,19 +49,22 @@ export const useAddLeap = (playerState: IPlayerState) => {
     const { x, y } = getTarget(playerState);
     let [targetX, targetY] = [x, y];
 
-    if (dir === Direction.Left) {
-      targetX -= Tile.Size;
-    }
-    if (dir === Direction.Right) {
-      targetX += Tile.Size;
-    }
+    const leaps = {
+      [Direction.Down]: () => {
+        targetY -= Tile.Size;
+      },
+      [Direction.Left]: () => {
+        targetX -= Tile.Size;
+      },
+      [Direction.Right]: () => {
+        targetX += Tile.Size;
+      },
+      [Direction.Up]: () => {
+        targetY += Tile.Size;
+      }
+    };
 
-    if (dir === Direction.Up) {
-      targetY += Tile.Size;
-    }
-    if (dir === Direction.Down) {
-      targetY -= Tile.Size;
-    }
+    leaps[dir]?.();
 
     if (!checkCanLeapTo(targetX, targetY)) {
       return;
