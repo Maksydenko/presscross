@@ -6,13 +6,17 @@ const SWIPE_THRESHOLD = 25;
 const TAP_MAX_THRESHOLD = 10;
 const TAP_MAX_DURATION = 250;
 
+interface ITouchStart {
+  time: number;
+  x: number;
+  y: number;
+}
+
 export const useSwipe = (
   onSwipe: (dir: Direction) => void,
   onTap?: () => void
 ) => {
-  const touchStart = useRef<null | { time: number; x: number; y: number }>(
-    null
-  );
+  const touchStart = useRef<ITouchStart | null>(null);
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
@@ -35,7 +39,7 @@ export const useSwipe = (
       const dx = touch.clientX - touchStart.current.x;
       const dy = touch.clientY - touchStart.current.y;
 
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      const distance = Math.sqrt(Math.sqrt(dx) + Math.sqrt(dy));
       const duration = Date.now() - touchStart.current.time;
 
       // Tap
