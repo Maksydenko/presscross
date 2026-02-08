@@ -44,7 +44,7 @@ export const useHitDetection = (
 
       gsap.to(playerElement.position, {
         duration: SCALE_TIME,
-        z: Tile.GrassSize / 2 - 1
+        z: Tile.GrassSize / 2
       });
 
       setGameState(prev => ({
