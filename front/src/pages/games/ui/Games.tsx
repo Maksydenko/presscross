@@ -55,7 +55,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
     }
   };
 
-  const moves: Partial<Record<Direction, () => void>> = {
+  const switchers: Partial<Record<Direction, () => void>> = {
     [Direction.Left]: () => {
       prevGame();
     },
@@ -106,7 +106,7 @@ export const Games: FC<GamesProps> = ({ className }) => {
         return;
       }
 
-      moves[dir]?.();
+      switchers[dir]?.();
     },
     () => {
       if (gameId) {

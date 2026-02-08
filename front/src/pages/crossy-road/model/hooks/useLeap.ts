@@ -61,23 +61,26 @@ export const useLeap = (
       rotation: { z: targetRotation }
     } = playerState;
 
-    if (dir === Direction.Left) {
-      targetX -= Tile.Size;
-      targetRotation = Math.PI / 2;
-    }
-    if (dir === Direction.Right) {
-      targetX += Tile.Size;
-      targetRotation = -Math.PI / 2;
-    }
+    const targets = {
+      [Direction.Down]: () => {
+        targetY -= Tile.Size;
+        targetRotation = Math.PI;
+      },
+      [Direction.Left]: () => {
+        targetX -= Tile.Size;
+        targetRotation = Math.PI / 2;
+      },
+      [Direction.Right]: () => {
+        targetX += Tile.Size;
+        targetRotation = -Math.PI / 2;
+      },
+      [Direction.Up]: () => {
+        targetY += Tile.Size;
+        targetRotation = 0;
+      }
+    };
 
-    if (dir === Direction.Up) {
-      targetY += Tile.Size;
-      targetRotation = 0;
-    }
-    if (dir === Direction.Down) {
-      targetY -= Tile.Size;
-      targetRotation = Math.PI;
-    }
+    targets[dir]?.();
 
     if (
       targetX >= (Tile.Max + 1) * Tile.Size ||

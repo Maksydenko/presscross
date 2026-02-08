@@ -16,7 +16,7 @@ export const useAddLeap = (playerState: IPlayerState) => {
   const getTarget = (state: IPlayerState) => {
     let { x, y } = state.position;
 
-    const leaps = {
+    const targets = {
       [Direction.Down]: () => {
         y -= Tile.Size;
       },
@@ -32,7 +32,7 @@ export const useAddLeap = (playerState: IPlayerState) => {
     };
 
     for (const dir of state.leapsQueue) {
-      leaps[dir]?.();
+      targets[dir]?.();
     }
 
     return {
@@ -49,7 +49,7 @@ export const useAddLeap = (playerState: IPlayerState) => {
     const { x, y } = getTarget(playerState);
     let [targetX, targetY] = [x, y];
 
-    const leaps = {
+    const targets = {
       [Direction.Down]: () => {
         targetY -= Tile.Size;
       },
@@ -64,7 +64,7 @@ export const useAddLeap = (playerState: IPlayerState) => {
       }
     };
 
-    leaps[dir]?.();
+    targets[dir]?.();
 
     if (!checkCanLeapTo(targetX, targetY)) {
       return;
