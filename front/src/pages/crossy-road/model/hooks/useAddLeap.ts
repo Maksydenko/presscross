@@ -1,6 +1,12 @@
 import { useAtomValue } from 'jotai';
 
-import { Direction, useSwipe, useWindowListener } from '@/shared/model';
+import {
+  Direction,
+  GamepadButton,
+  useGamepad,
+  useSwipe,
+  useWindowListener
+} from '@/shared/model';
 
 import { Tile } from '../../config';
 
@@ -106,4 +112,22 @@ export const useAddLeap = (playerState: IPlayerState) => {
       addLeap(Direction.Up);
     }
   );
+
+  useGamepad({
+    onButton: btn => {
+      if (btn === GamepadButton.Left) {
+        addLeap(Direction.Left);
+      }
+      if (btn === GamepadButton.Right) {
+        addLeap(Direction.Right);
+      }
+
+      if ([GamepadButton.Cross, GamepadButton.Up].includes(btn)) {
+        addLeap(Direction.Up);
+      }
+      if (btn === GamepadButton.Down) {
+        addLeap(Direction.Down);
+      }
+    }
+  });
 };

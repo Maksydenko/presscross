@@ -4,7 +4,7 @@ import { FC } from 'react';
 import clsx from 'clsx';
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import { useWindowListener } from '@/shared/model';
+import { GamepadButton, useGamepad, useWindowListener } from '@/shared/model';
 import { Transition } from '@/shared/ui';
 
 import { gameStateAtom, resetGameAtom } from '../../model';
@@ -30,6 +30,19 @@ export const GameOver: FC<GameOverProps> = ({ className }) => {
   useWindowListener({
     listener: handleKeyDown,
     type: 'keydown'
+  });
+
+  useGamepad({
+    onButton: btn => {
+      if (
+        !isEnded ||
+        ![GamepadButton.Cross, GamepadButton.Options].includes(btn)
+      ) {
+        return;
+      }
+
+      resetGame();
+    }
   });
 
   return (

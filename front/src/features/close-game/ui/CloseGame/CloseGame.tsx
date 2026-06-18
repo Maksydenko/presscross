@@ -1,7 +1,12 @@
 import { FC, ReactNode } from 'react';
 import { useSetAtom } from 'jotai';
 
-import { gameAtom, useWindowListener } from '@/shared/model';
+import {
+  gameAtom,
+  GamepadButton,
+  useGamepad,
+  useWindowListener
+} from '@/shared/model';
 
 interface CloseGameProps {
   children?: ReactNode;
@@ -28,6 +33,16 @@ export const CloseGame: FC<CloseGameProps> = ({
 
     closeGame();
   };
+
+  useGamepad({
+    onButton: btn => {
+      if (btn !== GamepadButton.PS) {
+        return;
+      }
+
+      closeGame();
+    }
+  });
 
   useWindowListener({
     listener: handleKeyDown,

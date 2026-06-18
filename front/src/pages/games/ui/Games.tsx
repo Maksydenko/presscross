@@ -5,7 +5,9 @@ import { useAtom } from 'jotai';
 import {
   Direction,
   gameAtom,
+  GamepadButton,
   getPropertyValue,
+  useGamepad,
   useSwipe,
   useWheel,
   useWindowListener
@@ -64,6 +66,18 @@ export const Games: FC<GamesProps> = ({ className }) => {
     }
   };
 
+  const handlers: Partial<Record<GamepadButton, () => void>> = {
+    [GamepadButton.Cross]: () => {
+      openGame();
+    },
+    [GamepadButton.Left]: () => {
+      prevGame();
+    },
+    [GamepadButton.Right]: () => {
+      nextGame();
+    }
+  };
+
   const handleKeyDown = ({ code }: KeyboardEvent) => {
     if (gameId) {
       return;
@@ -116,6 +130,23 @@ export const Games: FC<GamesProps> = ({ className }) => {
       openGame();
     }
   );
+
+  useGamepad({
+    onButton: btn => {
+      if (gameId) {
+        return;
+      }
+
+      handlers[btn as GamepadButton]?.();
+    },
+    onStick: dir => {
+      if (gameId) {
+        return;
+      }
+
+      switchers[dir]?.();
+    }
+  });
 
   useEffect(() => {
     const containerElement = containerRef.current;
